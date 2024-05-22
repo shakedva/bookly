@@ -5,6 +5,9 @@ export default function ErrorPage() {
     const errorObject = useRouteError();
     let title = 'An error occured';
     let message = 'Something went wrong.';
+    if (errorObject.status === 500) {
+        message = errorObject.data.message;
+    }
     if (errorObject.status === 404) {
         title = '404 - Page Not Found';
         message = 'Sorry, the page you were looking for does not exist.'
