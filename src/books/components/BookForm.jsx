@@ -18,6 +18,14 @@ export default function BookForm({ book }) {
             value: book ? book.pageCount : 0,
             isValid: !!book
         },
+        authors: {
+            value: book ? book.authors : '',
+            isValid: !!book
+        },
+        image: {
+            value: book ? book.image : '',
+            isValid: !!book
+        },
     }, false
     );
 
@@ -36,6 +44,14 @@ export default function BookForm({ book }) {
                     value: book.pageCount,
                     isValid: true
                 },
+                authors: {
+                    value: book.authors,
+                    isValid: true
+                },
+                image: {
+                    value: book.image,
+                    isValid: true
+                },
             },
                 true
             );
@@ -49,6 +65,7 @@ export default function BookForm({ book }) {
 
     return (
         <Form>
+            <img src={formState.inputs.image.value}></img>
             <Input
                 id='title'
                 label='Title'
@@ -79,6 +96,13 @@ export default function BookForm({ book }) {
                 initialValue={formState.inputs.pageCount.value}
                 initialValid={formState.inputs.pageCount.isValid}
             />
+
+            <label>Authors</label>
+            <ul>
+                {
+                    formState.inputs.authors.value.map(author => <li key={author}>{author}</li> )
+                }
+            </ul>
             <button type='submit' disabled={!formState.isValid}>
                 Save
             </button>

@@ -6,7 +6,8 @@ export default function NewBookPage() {
     const [book, setBook] = useState(null);
 
     async function handleSearch() {
-        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyCDBVpQz-Ifk7JFUrJzAdWB58k6FRHoXeQ`);
+        console.log(`key=${import.meta.env.REACT_APP_GOOGLE_API_KEY}`)
+        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${import.meta.env.REACT_APP_GOOGLE_API_KEY}`);
         const data = await response.json();
         console.log(JSON.stringify(data))
         if (response.ok && data.totalItems > 0) {
